@@ -47,7 +47,7 @@ function renderMenu(menus) {
 	menus.map(item => {
 		let currentMenu = {
 			name: item.name,
-			path: '/' + item.name,
+			path: item.path,
 			component: (resolve) => require(['@/views' + item.component + '.vue'], resolve),
 		};
 		router.addRoute(currentMenu)
@@ -58,7 +58,7 @@ function renderMenu(menus) {
 	console.log(router)
 	if (location.href.split('/#').length > 0) {
 		let path = location.href.split('/#')[1];
-		router.push((path == "login" || path == "/") ? menus[0].to : path);
+		router.push((path == "login" || path == "/") ? menus[0].path : path);
 	}
 }
 
