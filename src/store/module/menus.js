@@ -18,15 +18,7 @@ const actions = {
 // mutations
 const mutations = {
 	setMenus (state, menus) {
-		state.menus = (menus).map(item => {
-			let name = item.name.replace(/\s*/g,'').toLowerCase();
-			if(name == "projects"){
-				item.to = "dashboard/hubpage";
-			}else{
-				item.to = name;
-			}
-			return item;
-		});
+		state.menus = menus;
 	}
 }
 
