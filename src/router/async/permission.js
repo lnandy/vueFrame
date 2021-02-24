@@ -21,7 +21,7 @@ user store有更新时，根据用户email查询用户角色，根据角色获�
 router.beforeEach((to, from, next) => {
 	console.info('router changed');
 	//第一次进入或者刷新页面，路由还没从后台抓取
-	if(to.name  == from.name){
+	if(to.name  == from.name && to.name != null){
 		console.info('no')
 		return false;
 	}
@@ -37,22 +37,25 @@ router.beforeEach((to, from, next) => {
 
 //根据menu信息渲染菜单
 function renderMenu(menus) {
-	let rootframe = [{
-		name: "dashboard",
-		path: "/dashboard",
-		component: (resolve) => require(['@/views/dashboard/dashboard.vue'], resolve),
-	}];
-	let menulist = menus.map(item => {
+	// let rootframe = {
+	// 	name: "dashboard",
+	// 	path: "/dashboard",
+	// 	component: (resolve) => require(['@/views/dashboard/dashboard.vue'], resolve),
+	// };
+	router.matcher = createRouter().matcher;
+	
+	menus.map(item => {
 		let currentMenu = {
 			name: item.to,
 			path: '/' + item.to,
 			component: (resolve) => require(['@/views' + item.component + '.vue'], resolve),
 		};
-		return currentMenu;
+		router.addRoute(currentMenu)
+		//return currentMenu;
 	})
-	rootframe[0].children = menulist;
-	router.matcher = createRouter().matcher;
-	router.addRoutes(rootframe);
+	//rootframe.children = menulist
+	//router.addRoute(rootframe);
+	console.log(router)
 	if (location.href.split('/#').length > 0) {
 		let path = location.href.split('/#')[1];
 		// if (path == "login" || path == "/") {

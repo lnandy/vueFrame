@@ -18,24 +18,6 @@ module.exports = {
 	chainWebpack(config) {
 		config.plugins.delete('preload')
 		config.plugins.delete('prefetch')
-		// (1.) To handle editor icons, get the default rule for *.svg files first:
-		const svgRule = config.module.rule('svg');
-		// Then you can either:
-		//
-		// * clear all loaders for existing 'svg' rule:
-		//
-		//      svgRule.uses.clear();
-		//
-		// * or exclude ckeditor directory from node_modules:
-		svgRule.exclude.add(path.join(__dirname, 'node_modules', '@ckeditor'));
-		// Add an entry for *.svg files belonging to CKEditor. You can either:
-		//
-		// * modify the existing 'svg' rule:
-		//
-		//      svgRule.use( 'raw-loader' ).loader( 'raw-loader' );
-		//
-		// * or add a new one:
-
 	},
 
 	configureWebpack: (config) => {
