@@ -1,7 +1,7 @@
 import router from '@/router/index'
 import store from '@/store/index'
 import createRouter from '@/router/async/publicRouter.js'
-import data from '@/router/async/example.js'
+import data from '@/router/async/routerMenu.js'
 
 /*
 
@@ -46,8 +46,8 @@ function renderMenu(menus) {
 	
 	menus.map(item => {
 		let currentMenu = {
-			name: item.to,
-			path: '/' + item.to,
+			name: item.name,
+			path: '/' + item.name,
 			component: (resolve) => require(['@/views' + item.component + '.vue'], resolve),
 		};
 		router.addRoute(currentMenu)
@@ -58,9 +58,6 @@ function renderMenu(menus) {
 	console.log(router)
 	if (location.href.split('/#').length > 0) {
 		let path = location.href.split('/#')[1];
-		// if (path == "login" || path == "/") {
-		// 	router.push(menus[0].to);
-		// }
 		router.push((path == "login" || path == "/") ? menus[0].to : path);
 	}
 }
@@ -74,7 +71,7 @@ function getMenus(){
 
 function asycMenu() {
 	getMenus().then((menus) => {
-		renderMenu(menus)
+		renderMenu(menus);
 	});
 }
 
