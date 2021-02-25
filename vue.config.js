@@ -59,14 +59,15 @@ module.exports = {
 	devServer: { //代理
 		port: 8080,
 		proxy: {
-			'/services/': {
-				target: 'target',
+			'/api/': {
+				target: 'http://17yuezhan.com',
+				logLevel: "debug",
 				changeOrigin: true,
-				//ws: true,
-				// pathRewrite: {
-				//   '^/services/': ''
-				// }
-			},
+				// ws: true,
+				pathRewrite: {
+				  '^/api/': '/noobiekartscloudservices/'
+				}
+			}
 		}
 	}
 }
