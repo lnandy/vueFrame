@@ -69,7 +69,7 @@
 		height: 100%;
 	}
 
-	body {
+	html {
 		background-size: 100% 150px;
 		background-position-y: center;
 		background-color: #5A5A5A;
@@ -95,11 +95,63 @@
 		background-color: #e4e4e4;
 	}
 
+	.container_title {
+		font-weight: bold;
+		font-size: 25px;
+		line-height: 30px;
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	.container_title:before {
+		content: "";
+		margin: 0px 0;
+		margin-right: 10px;
+		height: 22px;
+		display: inline-block;
+		vertical-align: text-bottom;
+		border-left: 4px solid #00b0da;
+	}
+
 	.el-scrollbar__wrap {
 		overflow-x: hidden !important;
 	}
 
 	.el-scrollbar__thumb {
 		background-color: #949494 !important;
+	}
+
+	* {
+		scrollbar-color: #949494 #e4e4e4;
+		/* 滑块颜色  滚动条背景颜色 */
+		scrollbar-width: thin;
+		/* 滚动条宽度有三种：thin、auto、none */
+	}
+
+	*::-webkit-scrollbar {
+		right: 10px;
+		width: 7px;
+		box-sizing: border-box;
+		background-color: transparent;
+	}
+
+	/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+	*::-webkit-scrollbar-track {
+		background-color: #e4e4e4;
+	}
+
+	/*定义滚动条轨道 内阴影+圆角*/
+	*::-webkit-scrollbar-thumb {
+		background-color: #949494;
+		/* border-radius: 6px; */
+	}
+
+	/*定义滑块 内阴影+圆角*/
+	.scrollbarHide::-webkit-scrollbar {
+		display: none
+	}
+
+	.scrollbarShow::-webkit-scrollbar {
+		display: block
 	}
 </style>
