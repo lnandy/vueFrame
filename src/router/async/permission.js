@@ -19,10 +19,8 @@ user store有更新时，根据用户email查询用户角色，根据角色获�
 
 // 路由拦截器
 router.beforeEach((to, from, next) => {
-	console.info('router changed');
 	//第一次进入或者刷新页面，路由还没从后台抓取
 	if(to.name  == from.name && to.name != null){
-		console.info('no')
 		return false;
 	}
 	if (!store.getters['menus/getMenus'].length && to.name != "login" && to.name != "notFound") {

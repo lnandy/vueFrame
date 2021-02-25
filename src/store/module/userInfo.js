@@ -3,7 +3,6 @@ import checkPermission from '@/router/async/permission.js'
 export default {
     namespaced: true,
     state: {
-        showLoading: true,
         userInfo: {}
     },
     mutations: {
@@ -20,7 +19,7 @@ export default {
         },
     },
     getters: {
-        getUserInfo: state => {
+        get: state => {
             return state.userInfo
         }
     }

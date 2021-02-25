@@ -1,7 +1,9 @@
 <template>
 	<div id="app">
 		<Dashboard v-if="showDashboard"></Dashboard>
-		<router-view class="frame"/>
+		<keep-alive>
+			<router-view class="frame" />
+		</keep-alive>
 	</div>
 </template>
 
@@ -12,7 +14,7 @@
 		components: {
 			Dashboard: Dashboard
 		},
-		data(){
+		data() {
 			return {
 				showDashboard: false,
 			}
@@ -21,7 +23,7 @@
 			'$route.path': function(newVal) {
 				if (newVal !== '/' && newVal !== '/notFound') {
 					this.showDashboard = true;
-				}else{
+				} else {
 					this.showDashboard = false;
 				}
 			}
@@ -87,9 +89,17 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.frame{
+
+	.frame {
 		flex: 1;
 		background-color: #e4e4e4;
 	}
-	
+
+	.el-scrollbar__wrap {
+		overflow-x: hidden !important;
+	}
+
+	.el-scrollbar__thumb {
+		background-color: #949494 !important;
+	}
 </style>

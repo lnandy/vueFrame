@@ -53,6 +53,7 @@
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 				if(userInfo != null && userInfo != '{}'){
 					this.userInfo.name = userInfo.name;
+					this.userInfo.password = userInfo.password;
 					this.userInfo.remeberPwd = userInfo.remeberPwd;
 					//记住密码后且为过期，再次进入不需要登陆
 					let now = new Date().getTime();
@@ -63,7 +64,7 @@
 			},
 			saveUserInfo(){
 				this.userInfo.timer = new Date().getTime();
-				this.userInfo.password = "";
+				this.userInfo.password = window.btoa(this.userInfo.password);
 				localStorage.setItem("userInfo",JSON.stringify(this.userInfo));
 				this.$store.dispatch('userInfo/SET',this.userInfo);
 			},

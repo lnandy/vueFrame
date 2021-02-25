@@ -22,5 +22,12 @@ let resp = [{
 	"path": "/userManagement",
 	"component": "/userManagement/UserManagement",
 	"description": "用户管理"
+},{
+	"id": "5",
+	"name": "loginlog",
+	"path": "/loginlog",
+	"component": "/log/LoginLog",
+	"description": "登陆日志",
+	"hidden": true,
 }]
 export default resp;
