@@ -1,6 +1,6 @@
 <template>
 	<div class="dashboard_container">
-		<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true"
+		<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" :router="true"
 			background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
 			<template v-for="menu in menuList">
 				<el-menu-item :key="menu.name" :index="menu.name" v-if="!menu.hidden">{{menu.description}}</el-menu-item>
@@ -42,9 +42,6 @@
 			this.menuList = this.$store.getters['menus/getMenus'];
 		},
 		methods: {
-			handleSelect(key, keyPath) {
-				console.log(key, keyPath);
-			},
 			logout() {
 				localStorage.removeItem("userInfo");
 				this.$store.dispatch('userInfo/SET', {});

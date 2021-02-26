@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { Message } from 'element-ui';
+import {
+	Message
+} from 'element-ui';
 
 let baseUrl = process.env.DOMAIN_ENV === 'prod' ? 'http://58.87.113.200/noobiekartscloudservices' : '/api';
 let service = axios.create({
@@ -7,12 +9,25 @@ let service = axios.create({
 	timeout: 60000,
 })
 
+service.interceptors.request.use((config) => {
+	//在发送请求之前如果为post序列化请求参数
+	if (config.method === 'post' && typeof config.data == "object") {
+		var formData = new FormData();
+		for (let [key, value] of Object.entries(config.data)) {
+			formData.append(key,value);
+		}
+		config.data = formData;
+	}
+	return config;
+}, (error) => {
+	return Promise.reject(error);
+});
 
 // use里面放两个函数，第一个函数是成功做什么，第二个是失败做什么
 service.interceptors.response.use((res) => {
 	// 响应成功做什么 返回响应res res本质是Promise
 	//后台返回204	No Content
-	if(res.status == 204){
+	if (res.status == 204) {
 		return []
 	}
 	return res

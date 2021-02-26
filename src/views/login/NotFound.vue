@@ -30,11 +30,14 @@
 		flex-direction: column;
 		align-items: center;
 		background-color: #fff;
-		padding: 200px 0 0;
+		padding: 15% 0 0;
 		p {
 			text-align: center;
 			font-size: 16px ! important;
 			font-weight: 600;
+		}
+		img{
+			width: 45%;
 		}
 	}
 </style>

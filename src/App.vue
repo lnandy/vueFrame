@@ -29,13 +29,13 @@
 			}
 		},
 		mounted() {
-			this.hideMask();
 			this.getUserInfoStorage();
+			window.addEventListener('storage', function () {
+			    localStorage.clear();
+			    window.location.replace("/#/");
+			 });
 		},
 		methods: {
-			hideMask() {
-				document.body.style.backgroundImage = "none";
-			},
 			getUserInfoStorage() {
 				let me = this;
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'));

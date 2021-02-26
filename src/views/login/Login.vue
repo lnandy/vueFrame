@@ -18,6 +18,8 @@
 </template>
 
 <script>
+	import _ from 'loadsh'
+	import http from "@/components/http"
 	export default {
 		name: "Login",
 		data() {
@@ -53,7 +55,6 @@
 				let userInfo = JSON.parse(localStorage.getItem('userInfo'));
 				if(userInfo != null && userInfo != '{}'){
 					this.userInfo.name = userInfo.name;
-					this.userInfo.password = userInfo.password;
 					this.userInfo.remeberPwd = userInfo.remeberPwd;
 					//记住密码后且为过期，再次进入不需要登陆
 					let now = new Date().getTime();
@@ -64,7 +65,7 @@
 			},
 			saveUserInfo(){
 				this.userInfo.timer = new Date().getTime();
-				this.userInfo.password = window.btoa(this.userInfo.password);
+				delete this.userInfo.password;
 				localStorage.setItem("userInfo",JSON.stringify(this.userInfo));
 				this.$store.dispatch('userInfo/SET',this.userInfo);
 			},
@@ -73,8 +74,18 @@
 				if(!me.validate()){
 					return false;
 				}
+				let temp = _.cloneDeep(me.userInfo);
+				temp.password = window.btoa(temp.password);
+				http.post("/user/login.php",temp).then(resp => {
+					if(!resp.data.content.length){
+						this.$message.error('用户名或密码错误，请重试!');
+					}else{
+						Object.assign(me.userInfo,resp.data.content[0]);
+						me.saveUserInfo();
+					}
+				})
 				//登陆成功后
-				me.saveUserInfo();
+				//me.saveUserInfo();
 			},
 			validate(){
 				if(!this.userInfo.name){
