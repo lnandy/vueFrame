@@ -8,6 +8,7 @@
 </template>
 
 <script>
+	import http from "@/components/http"
 	import Dashboard from "@/views/dashboard/Dashboard"
 	export default {
 		name: "App",
@@ -30,10 +31,10 @@
 		},
 		mounted() {
 			this.getUserInfoStorage();
-			window.addEventListener('storage', function () {
-			    localStorage.clear();
-			    window.location.replace("/#/");
-			 });
+			window.addEventListener('storage', function() {
+				localStorage.clear();
+				window.location.replace("/#/");
+			});
 		},
 		methods: {
 			getUserInfoStorage() {
@@ -52,6 +53,10 @@
 						userInfo.timer = new Date().getTime();
 						localStorage.setItem("userInfo", JSON.stringify(userInfo));
 						me.$store.dispatch('userInfo/SET', userInfo);
+						http.post('/loginlog/add.php', {
+							name: userInfo.name,
+							type: "refresh"
+						});
 					}
 				} else {
 					me.$router.push('/');

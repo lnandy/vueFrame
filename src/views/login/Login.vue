@@ -57,10 +57,10 @@
 					this.userInfo.name = userInfo.name;
 					this.userInfo.remeberPwd = userInfo.remeberPwd;
 					//记住密码后且为过期，再次进入不需要登陆
-					let now = new Date().getTime();
-					if(userInfo.remeberPwd && (now-userInfo.timer)/24/60/60/1000 < 1){
-						this.saveUserInfo();
-					}
+					// let now = new Date().getTime();
+					// if(userInfo.remeberPwd && (now-userInfo.timer)/24/60/60/1000 < 1){
+					// 	this.saveUserInfo();
+					// }
 				}
 			},
 			saveUserInfo(){
@@ -68,6 +68,7 @@
 				delete this.userInfo.password;
 				localStorage.setItem("userInfo",JSON.stringify(this.userInfo));
 				this.$store.dispatch('userInfo/SET',this.userInfo);
+				http.post('/loginlog/add.php',{name:this.userInfo.name,type:"log in"});
 			},
 			login(){
 				let me = this;

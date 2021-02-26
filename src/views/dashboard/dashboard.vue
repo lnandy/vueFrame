@@ -19,6 +19,7 @@
 </template>
 
 <script>
+	import http from "@/components/http"
 	import UserInfo from "@/views/userManagement/UserInfo"
 	export default {
 		name: "dashboard",
@@ -43,6 +44,7 @@
 		},
 		methods: {
 			logout() {
+				http.post('/loginlog/add.php',{name:this.userInfo.name,type:"log out"});
 				localStorage.removeItem("userInfo");
 				this.$store.dispatch('userInfo/SET', {});
 				this.$router.push('/');

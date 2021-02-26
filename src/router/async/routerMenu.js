@@ -12,9 +12,9 @@ let resp = [{
 	"description": "跑圈记录"
 },{
 	"id": "3",
-	"name": "carstationManagement",
-	"path": "/carstationManagement",
-	"component": "/carstationManagement/CarstationManagement",
+	"name": "parkManagement",
+	"path": "/parkManagement",
+	"component": "/parkManagement/ParkManagement",
 	"description": "车场管理"
 },{
 	"id": "4",
@@ -25,7 +25,7 @@ let resp = [{
 },{
 	"id": "5",
 	"name": "loginlog",
-	"path": "/loginlog",
+	"path": "/log",
 	"component": "/log/LoginLog",
 	"description": "登陆日志",
 	"hidden": true,
