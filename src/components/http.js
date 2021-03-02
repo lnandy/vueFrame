@@ -3,7 +3,7 @@ import {
 	Message
 } from 'element-ui';
 
-let baseUrl = process.env.DOMAIN_ENV === 'prod' ? 'http://58.87.113.200/noobiekartscloudservices' : '/api';
+let baseUrl = process.env.NODE_ENV === 'production' ? '/noobiekartsadmin/services/' : '/api';
 let service = axios.create({
 	baseURL: baseUrl,
 	timeout: 60000,

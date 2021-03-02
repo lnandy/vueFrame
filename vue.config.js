@@ -52,8 +52,8 @@ module.exports = {
 			// 为开发环境修改配置...
 			config.mode = 'development'
 		}
-		config.output.filename = `js/[name].js?${Timestamp}`
-		config.output.chunkFilename = `js/[name].js?${Timestamp}`
+		config.output.filename = `js/[name].${Timestamp}.js`
+		config.output.chunkFilename = `js/[name].${Timestamp}.js`
 	},
 
 	devServer: { //代理
@@ -65,7 +65,7 @@ module.exports = {
 				changeOrigin: true,
 				// ws: true,
 				pathRewrite: {
-				  '^/api/': '/noobiekartscloudservices/'
+				  '^/api/': '/noobiekartsadmin/services/'
 				}
 			}
 		}
